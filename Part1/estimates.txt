@@ -1,0 +1,15 @@
+
+With multi-AZ and multi-region set up of RDS/MySQL, 
+
+1. Minimum RTO for a single AZ outage
+we can achieve near real-time failover to passive instance in another AZ, so minimum RTO  1-2 min.
+
+
+2. Minimum RTO for a single region outage
+Since data is replicated to another region in real time, read replica will have to be promoted to standalone database and application has to direct traffic to new master. minimum RTO - 5 mins 
+
+3. Minimum RPO for a single AZ outage
+RPO would be 0, since there would be no data loss, passive instance will take over.
+
+4. Minimum RPO for a single region outage
+replication model is asyncronous, so there is a possibility point in time recovery is slightly behind the real time update. minimum RPO : 5 mins. 
